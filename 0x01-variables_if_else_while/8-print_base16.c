@@ -11,10 +11,17 @@ int main(void)
 	int x;
 
 	c = 'a';
+	x = 0;
 	while (x < 10)
+	{
 		putchar(x + '0');
+		x++;
+	}
 	while (c <= 'f')
+	{
 		putchar(c);
+		c++;
+	}
 	putchar('\n');
 	return (0);
 }
