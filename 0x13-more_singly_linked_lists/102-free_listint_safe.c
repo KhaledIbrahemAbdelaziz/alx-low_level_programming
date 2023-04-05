@@ -1,6 +1,6 @@
 #include "lists.h"
 
-size_t looped_listint_len(const listint_t *head);
+size_t looped_listint_len(listint_t *head);
 size_t free_listint_safe(listint_t **h);
 
 /**
@@ -9,9 +9,9 @@ size_t free_listint_safe(listint_t **h);
  * Return: The unique nodes number or 0.
  */
 
-size_t looped_listint_len(const listint_t *head)
+size_t looped_listint_len(listint_t *head)
 {
-	const listint_t *tor, *hare;
+	listint_t *tor, *hare;
 	size_t nodes = 1;
 
 	if (head == NULL || head->next == NULL)
