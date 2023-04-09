@@ -3,26 +3,6 @@
 #include <stdlib.h>
 
 void closing_file(int fd);
-char *buffering(char *filename);
-
-/**
- * buffering - to create buffer to save text.
- * @filename: The buffer.
- * Return: The created buffer.
- */
-
-char *buffering(char *filename)
-{
-	char *buffer;
-
-	buffer = malloc(sizeof(char) * 1024);
-	if (buffer == NULL)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", buffer);
-		exit(99);
-	}
-	return (buffer);
-}
 
 /**
  * closing_file - To closing a file
@@ -54,12 +34,17 @@ int main(int argc, char *argv[])
 	int from, to, reads, writes;
 	char *buffer;
 
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", buffer);
+		exit(99);
+	}
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	buffer = buffering(argv[2]);
 	from = open(argv[1], O_RDONLY);
 	reads = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
