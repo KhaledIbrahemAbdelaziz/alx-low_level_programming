@@ -63,8 +63,7 @@ int main(int argc, char *argv[])
 	from = open(argv[1], O_RDONLY);
 	reads = read(from, buffer, 1024);
 	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	while (reads > 0)
-	{
+	do {
 		if (from == -1 || reads == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -80,7 +79,7 @@ int main(int argc, char *argv[])
 		}
 		reads = read(from, buffer, 1024);
 		to = open(argv[2], O_WRONLY | O_APPEND);
-	}
+	} while (reads > 0);
 	free(buffer);
 	closing_file(from);
 	closing_file(to);
